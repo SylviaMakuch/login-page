@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 
 const Form = styled.form`
   display: flex;
@@ -58,17 +62,38 @@ const H1 = styled.h1`
   color: #fff;
 `;
 
+const initialState = {
+  email: "",
+  password: "",
+  confirmPassword: ""
+};
+
 export default function SignUpForm() {
-    return (
-        <>
-            <H1>Register</H1>
-            <Form>
-                <Label>Username</Label>
-                <Input type="text" placeholder="Username" />
-                <Label>Password</Label>
-                <Input type="password" placeholder="Password" />
-                <Button type="submit">SignUp</Button>
-            </Form>
-        </>
-    );
+  const [formData, setFormData] = useState(initialState);
+  const navigate = useNavigate();
+
+  const handleChange = (event:any) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(formData);
+    navigate("/user");  //redirect to user page
+  };
+
+  return (
+    <>
+      <H1>Register</H1>
+      <Form>
+        <Label>Email/ Username</Label>
+        <Input type="text" placeholder="Email" onChange={handleChange} />
+        <Label>Password</Label>
+        <Input type="password" placeholder="Password" onChange={handleChange} />
+        <Label>Confirm Password</Label>
+        <Input type="password" placeholder="Password" onChange={handleChange} />
+        <Button type="submit">SignUp</Button>
+      </Form>
+    </>
+  );
 }
