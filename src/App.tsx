@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CardComponent from './componets/Card';
+import UserPage from './componets/UserPage';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import movingmountains from "./media/movingmountains.svg";
 
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<CardComponent />} />
+          <Route path='/user' element={<UserPage />} />
         </Routes>
       </Router>
     </PageContainter>
