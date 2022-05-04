@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CardComponent from './componets/Card';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import movingmountains from "./media/movingmountains.svg";
 
 const PageContainter = styled.div`
@@ -15,8 +16,11 @@ const PageContainter = styled.div`
 function App() {
   return (
     <PageContainter>
-      <CardComponent />
-  
+      <Router>
+        <Routes>
+          <Route path="/" element={<CardComponent />} />
+        </Routes>
+      </Router>
     </PageContainter>
   );
 };

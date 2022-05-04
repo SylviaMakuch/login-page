@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import FormInput from "./FormInput";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import { useState } from "react";
 const user = require("./../media/user.png");
-
 
 const Card = styled.div`
   border-radius: calc(var(--curve) * 1px);
@@ -29,19 +30,37 @@ const Image = styled.img`
   height: 3rem;
 `;
 
-const H1 = styled.h1`
-  font-family: "Eczar", serif;
-  font-size: 2rem;
-  font-weight: 500;
+const Button = styled.button`
+  font-family: "Exo 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
   color: #fff;
+  height: 25px;
+  width: 85px;
+  border: 0px solid;
+  background-image: linear-gradient(271deg, #ff00d4, #9800f0,#ff00d4,#9800f0);
+  background-size: 500% 400%;
+  border-radius: 50px;
+  transition: 0.6s all;
+
+  &:hover {
+    background-position: 75% 50%;
+    transform: perspective(100px);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition: 0.1s;
+  }
 `;
 
 export default function CardComponent() {
-    return (
-        <Card>
-            <Image src={user} />
-            <H1> Login </H1>
-            <FormInput />
-        </Card>
-    );
+  const [isLogin, setIsLogin] = useState(true);
+  return (
+      <Card>
+        <Image src={user} />
+        {isLogin ? <Login /> : <SignUp />}
+        <Button type="submit" onClick={() => setIsLogin(!isLogin)}> {isLogin ? "SignUp" : "Login"} </Button>
+      </Card>
+  );
 }
