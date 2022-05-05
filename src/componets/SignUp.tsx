@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 
 
 const Form = styled.form`
@@ -70,14 +70,25 @@ const initialState = {
 
 export default function SignUpForm() {
   const [formData, setFormData] = useState(initialState);
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = (event:any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = e => {
+  const validatePassword = (password:string, confirmPassword:string) => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      setIsPasswordCorrect(false);
+    } else {
+      setIsPasswordCorrect(true);
+    }}
+
+
+  const handleSubmit = (e:any) => {
     e.preventDefault();
+    validatePassword(formData.password, formData.confirmPassword);
     console.log(formData);
     navigate("/user");  //redirect to user page
   };
@@ -85,13 +96,13 @@ export default function SignUpForm() {
   return (
     <>
       <H1>Register</H1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Label>Email/ Username</Label>
-        <Input type="text" placeholder="Email" onChange={handleChange} />
+        <Input name="email" type="email" placeholder="Email"  onChange={handleChange} />
         <Label>Password</Label>
-        <Input type="password" placeholder="Password" onChange={handleChange} />
-        <Label>Confirm Password</Label>
-        <Input type="password" placeholder="Password" onChange={handleChange} />
+        <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
+        <Label>{isPasswordCorrect? "Confirm Password" : "Passwords do not match"}</Label>
+        <Input type="password" placeholder="Password" name="confirmPassword" onChange={handleChange} />
         <Button type="submit">SignUp</Button>
       </Form>
     </>

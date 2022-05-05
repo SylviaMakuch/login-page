@@ -42,7 +42,7 @@ const Button = styled.button`
   background-size: 500% 400%;
   border-radius: 50px;
   transition: 0.6s all;
-
+  margin-bottom: 0.2rem;
   &:hover {
     background-position: 75% 50%;
     transform: perspective(100px);

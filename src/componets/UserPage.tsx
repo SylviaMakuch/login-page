@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const user = require("./../media/user.png");
 
 const Card = styled.div`
@@ -55,12 +56,17 @@ const H1 = styled.h1`
 `;
 
 export default function UserPage() {
-const [isLoggedOut, setIsLoggedOut] = useState(false);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    setIsLoggedOut(true);
+    navigate("/");
+  };
   return (
-      <Card>
-          <H1>User Profile</H1>
- 
-        <Button type="submit" onClick={() => setIsLoggedOut(true)}> Logout </Button>
-      </Card>
+    <Card>
+      <H1>User Profile</H1>
+      <Button type="submit" onClick={handleLogout}> Logout </Button>
+    </Card>
   );
 }
