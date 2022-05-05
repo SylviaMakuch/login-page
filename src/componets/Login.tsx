@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   display: flex;
@@ -57,16 +59,31 @@ const H1 = styled.h1`
   font-weight: 500;
   color: #fff;
 `;
+const initialState = {
+  email: "",
+  password: "",
+};
 
 export default function Login() {
+  const [formData, setFormData] = useState(initialState);
+
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  const handleChange = (event:any) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
   return (
     <>
     <H1>Login</H1>
-    <Form>
-      <Label>Username</Label>
-      <Input type="text" placeholder="Username" />
-      <Label>Password</Label>
-      <Input type="password" placeholder="Password" />
+    <Form onSubmit={handleSubmit}>
+        <Label>Email/ Username</Label>
+        <Input name="email" type="email" placeholder="Email"  onChange={handleChange} />
+        <Label>Password</Label>
+        <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
       <Button type="submit">Login</Button>
     </Form>
     </>
