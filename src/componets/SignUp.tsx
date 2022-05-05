@@ -70,27 +70,32 @@ const initialState = {
 
 export default function SignUpForm() {
   const [formData, setFormData] = useState(initialState);
-  const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+
   const navigate = useNavigate();
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const validatePassword = (password:string, confirmPassword:string) => {
+  const validatePassword = (password: string, confirmPassword: string) => {
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
       setIsPasswordCorrect(false);
     } else {
       setIsPasswordCorrect(true);
-    }}
+    }
+  }
 
-
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     validatePassword(formData.password, formData.confirmPassword);
+    if (isPasswordCorrect) {
+      navigate("/user");
+    } else {
+      alert("Passwords do not match");
+    }
     console.log(formData);
-    navigate("/user");  //redirect to user page
+
   };
 
   return (
@@ -98,10 +103,10 @@ export default function SignUpForm() {
       <H1>Register</H1>
       <Form onSubmit={handleSubmit}>
         <Label>Email/ Username</Label>
-        <Input name="email" type="email" placeholder="Email"  onChange={handleChange} />
+        <Input name="email" type="email" placeholder="Email" onChange={handleChange} />
         <Label>Password</Label>
         <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
-        <Label>{isPasswordCorrect? "Confirm Password" : "Passwords do not match"}</Label>
+        <Label>Comfirm Password</Label>
         <Input type="password" placeholder="Password" name="confirmPassword" onChange={handleChange} />
         <Button type="submit">SignUp</Button>
       </Form>
