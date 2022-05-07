@@ -4,6 +4,8 @@ import CardComponent from './componets/Card';
 import UserPage from './componets/UserPage';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import movingmountains from "./media/movingmountains.svg";
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 const PageContainter = styled.div`
     display: flex;
@@ -16,14 +18,16 @@ const PageContainter = styled.div`
 
 function App() {
   return (
-    <PageContainter>
-      <Router>
-        <Routes>
-          <Route path="/" element={<CardComponent />} />
-          <Route path='/user' element={<UserPage />} />
-        </Routes>
-      </Router>
-    </PageContainter>
+    <Provider store={store}>
+      <PageContainter>
+        <Router>
+          <Routes>
+            <Route path="/" element={<CardComponent />} />
+            <Route path='/user' element={<UserPage />} />
+          </Routes>
+        </Router>
+      </PageContainter>
+    </Provider>
   );
 };
 
