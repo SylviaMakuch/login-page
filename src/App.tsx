@@ -4,7 +4,7 @@ import CardComponent from './componets/Card';
 import UserPage from './componets/UserPage';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import movingmountains from "./media/movingmountains.svg";
-import { store } from './app/store';
+import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
 const PageContainter = styled.div`
