@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
+export interface UserState {
     name: string;
     email: string;
     password: string;
@@ -30,3 +30,6 @@ export const userSlice = createSlice({
         }   as (state: UserState, action: PayloadAction<string>) => void,
     }   
 });
+
+export const { setName, setEmail, setPassword, setConfirmPassword } = userSlice.actions;
+export default userSlice.reducer;
