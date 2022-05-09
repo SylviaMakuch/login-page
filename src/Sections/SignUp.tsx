@@ -92,7 +92,7 @@ export default function SignUpForm() {
     e.preventDefault();
     validatePassword(formData.password, formData.confirmPassword);
     if (isPasswordCorrect) {
-      dispatch(signup(formData));
+      // dispatch(signup(formData));
       navigate("/user");
     } else {
       alert("Passwords do not match");

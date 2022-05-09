@@ -16,9 +16,6 @@ export const userSlice = createSlice({
         confirmPassword: "",
     } as UserState,
     reducers: {
-        setName: (state, action: PayloadAction<string>) => {
-            state.name = action.payload;
-        },
         setEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
         },
@@ -31,5 +28,5 @@ export const userSlice = createSlice({
     }
 });
 
-export const { setName, setEmail, setPassword, setConfirmPassword } = userSlice.actions;
+export const { setEmail, setPassword, setConfirmPassword } = userSlice.actions;
 export default userSlice.reducer;
