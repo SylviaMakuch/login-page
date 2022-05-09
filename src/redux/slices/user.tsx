@@ -18,17 +18,17 @@ export const userSlice = createSlice({
     reducers: {
         setName: (state, action: PayloadAction<string>) => {
             state.name = action.payload;
-        }   as (state: UserState, action: PayloadAction<string>) => void,
+        },
         setEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
-        }   as (state: UserState, action: PayloadAction<string>) => void,
+        },
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
-        }   as (state: UserState, action: PayloadAction<string>) => void,
+        },
         setConfirmPassword: (state, action: PayloadAction<string>) => {
             state.confirmPassword = action.payload;
-        }   as (state: UserState, action: PayloadAction<string>) => void,
-    }   
+        }
+    }
 });
 
 export const { setName, setEmail, setPassword, setConfirmPassword } = userSlice.actions;
