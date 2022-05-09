@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux";
 
 
 const Form = styled.form`
@@ -73,6 +74,7 @@ export default function SignUpForm() {
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (event: any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -90,6 +92,7 @@ export default function SignUpForm() {
     e.preventDefault();
     validatePassword(formData.password, formData.confirmPassword);
     if (isPasswordCorrect) {
+      dispatch(signup(formData));
       navigate("/user");
     } else {
       alert("Passwords do not match");
