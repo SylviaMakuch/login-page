@@ -6,7 +6,9 @@ export const store = configureStore({
     reducer: {
         user: userSliceReducer,
         [RegisterApi.reducerPath]: RegisterApi.reducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(RegisterApi.middleware),
 });
 
 
