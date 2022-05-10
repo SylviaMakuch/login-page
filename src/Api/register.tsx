@@ -24,3 +24,5 @@ export const RegisterApi = createApi({
         })
     })
 });
+
+export const { usePostRegisterMutation } = RegisterApi;

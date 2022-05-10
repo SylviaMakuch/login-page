@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from "react-redux";
-
+import { usePostRegisterMutation } from "../Api/register";
 
 const Form = styled.form`
   display: flex;
@@ -76,6 +76,12 @@ export default function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [postRegister, {
+    // isLoading: isRegisterLoading,
+    // isSuccess: isRegisterSuccess
+  }] = usePostRegisterMutation();
+
+
   const handleChange = (event: any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -92,7 +98,12 @@ export default function SignUpForm() {
     e.preventDefault();
     validatePassword(formData.password, formData.confirmPassword);
     if (isPasswordCorrect) {
-      // dispatch(signup(formData));
+      postRegister({
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword
+      })
+
       navigate("/user");
     } else {
       alert("Passwords do not match");
