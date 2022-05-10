@@ -7,8 +7,8 @@ interface RegisterRequest {
 }
 
 
-export const signUp = createApi({
-    reducerPath: 'user',
+export const RegisterApi = createApi({
+    reducerPath: 'RegisterApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/' }),
     endpoints: (builder) => ({
         postRegister: builder.mutation<{ message: string }, RegisterRequest>({
