@@ -114,7 +114,6 @@ export default function SignUpForm() {
     } else {
       alert("Passwords do not match");
     }
-    console.log(formData.email);
   };
 
   return (

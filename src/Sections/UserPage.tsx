@@ -5,7 +5,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // const user = require("./../media/user.png");
 import { useSelector } from "react-redux";
-import { selectUser } from "../redux/slices/user";
+import { logout, selectUser } from "../redux/slices/user";
+import { useDispatch } from "react-redux";
+import e from "express";
 
 const Card = styled.div`
   border-radius: calc(var(--curve) * 1px);
@@ -61,13 +63,17 @@ export default function UserPage() {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
   const user = useSelector(selectUser);
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const dispatch = useDispatch();
+  const handleLogout = (e: any) => {
+    e.preventDefault();
     setIsLoggedOut(true);
+   dispatch(logout());
+    localStorage.removeItem("token");
     navigate("/");
   };
   return (
     <Card>
-      <H1>User Profile</H1>
+      <H1>Welcome!</H1>
       <h2>email : {user.email}</h2>
       <Button type="submit" onClick={handleLogout}> Logout </Button>
     </Card>
