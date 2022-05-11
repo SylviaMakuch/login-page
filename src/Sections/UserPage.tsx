@@ -3,7 +3,9 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const user = require("./../media/user.png");
+// const user = require("./../media/user.png");
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/slices/user";
 
 const Card = styled.div`
   border-radius: calc(var(--curve) * 1px);
@@ -57,7 +59,7 @@ const H1 = styled.h1`
 
 export default function UserPage() {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
-
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
   const handleLogout = () => {
     setIsLoggedOut(true);
@@ -66,6 +68,7 @@ export default function UserPage() {
   return (
     <Card>
       <H1>User Profile</H1>
+      <h2>email : {user.email}</h2>
       <Button type="submit" onClick={handleLogout}> Logout </Button>
     </Card>
   );
