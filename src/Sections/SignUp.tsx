@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from "react-redux";
 import { usePostRegisterMutation } from "../Api/register";
+import { login } from "../redux/slices/user";
 
 const Form = styled.form`
   display: flex;
@@ -98,18 +99,22 @@ export default function SignUpForm() {
     e.preventDefault();
     validatePassword(formData.password, formData.confirmPassword);
     if (isPasswordCorrect) {
+      dispatch(login({
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        loggedIn: false,
+      }));
       postRegister({
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword
       })
-
       navigate("/user");
     } else {
       alert("Passwords do not match");
     }
-    console.log(formData);
-
+    console.log(formData.email);
   };
 
   return (
