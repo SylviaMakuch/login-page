@@ -1,32 +1,41 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface UserState {
+interface UserState {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
+    loggedIn: boolean,
 }
+
+const initialState: UserState = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    loggedIn: false,
+};
 
 export const userSlice = createSlice({
     name: "user",   // name of the slice
-    initialState: {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    } as UserState,
+    initialState,
     reducers: {
-        setEmail: (state, action: PayloadAction<string>) => {
-            state.email = action.payload;
+        login: (state, action : PayloadAction<UserState>) => {
+            state.loggedIn = true;
+            state.name = action.payload.name;
+            state.email = action.payload.email;
+            state.password = action.payload.password;
+            state.confirmPassword = action.payload.confirmPassword;
         },
-        setPassword: (state, action: PayloadAction<string>) => {
-            state.password = action.payload;
-        },
-        setConfirmPassword: (state, action: PayloadAction<string>) => {
-            state.confirmPassword = action.payload;
+        logout: (state) => {
+            state.loggedIn = false;
+            state.name = "";
+            state.email = "";
+            state.password = "";
+            state.confirmPassword = "";
         }
     }
 });
 
-export const { setEmail, setPassword, setConfirmPassword } = userSlice.actions;
+export const {  } = userSlice.actions;
 export default userSlice.reducer;
