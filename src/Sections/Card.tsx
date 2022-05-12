@@ -9,8 +9,8 @@ const Card = styled.div`
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
-  height: 500px;
-  width: 500px;
+  height: 400px;
+  width: 400px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color:rgb(180 203 235 / 0%);
@@ -25,7 +25,7 @@ const Card = styled.div`
 `;
 
 const Image = styled.img`
-  margin-top: 4rem;
+  margin: 1rem;
   width: 3rem;
   height: 3rem;
 `;

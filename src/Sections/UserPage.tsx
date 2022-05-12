@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout, selectUser } from "../redux/slices/user";
 import { useDispatch } from "react-redux";
-import e from "express";
+import bucket from "./../media/bucket.svg";
 
 const Card = styled.div`
   border-radius: calc(var(--curve) * 1px);
@@ -74,7 +74,8 @@ export default function UserPage() {
   return (
     <Card>
       <H1>Welcome!</H1>
-      <h2>email : {user.email}</h2>
+      <H1>{user.name}</H1>
+      <img src={bucket} alt="bucket" />
       <Button type="submit" onClick={handleLogout}> Logout </Button>
     </Card>
   );

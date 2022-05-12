@@ -34,13 +34,18 @@ const Button = styled.button`
   font-size: 1rem;
   font-weight: 200;
   color: #fff;
-  height: 45px;
+  height: 20px;
   width: 85px;
   border: 0px solid;
   background-image: linear-gradient(271deg, blue, #00f0a0, blue,#00f0a0);
   background-size: 500% 400%;
   border-radius: 50px;
   transition: 0.6s all;
+  padding: 10px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-position: 75% 50%;
@@ -58,7 +63,9 @@ const H1 = styled.h1`
   font-size: 2rem;
   font-weight: 500;
   color: #fff;
+  margin: 0px;
 `;
+
 const initialState = {
   email: "",
   password: "",
@@ -67,25 +74,25 @@ const initialState = {
 export default function Login() {
   const [formData, setFormData] = useState(initialState);
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(formData);
   };
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   return (
     <>
-    <H1>Login</H1>
-    <Form onSubmit={handleSubmit}>
+      <H1>Login</H1>
+      <Form onSubmit={handleSubmit}>
         <Label>Email/ Username</Label>
-        <Input name="email" type="email" placeholder="Email"  onChange={handleChange} />
+        <Input name="email" type="email" placeholder="Email" onChange={handleChange} />
         <Label>Password</Label>
         <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
-      <Button type="submit">Login</Button>
-    </Form>
+        <Button type="submit">Login</Button>
+      </Form>
     </>
   );
 }

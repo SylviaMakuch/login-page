@@ -38,13 +38,18 @@ const Button = styled.button`
   font-size: 1rem;
   font-weight: 200;
   color: #fff;
-  height: 45px;
+  height: 20px;
   width: 85px;
   border: 0px solid;
   background-image: linear-gradient(271deg, blue, #00f0a0, blue,#00f0a0);
   background-size: 500% 400%;
   border-radius: 50px;
   transition: 0.6s all;
+  padding: 10px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-position: 75% 50%;
@@ -62,9 +67,11 @@ const H1 = styled.h1`
   font-size: 2rem;
   font-weight: 500;
   color: #fff;
+  margin: 0px;
 `;
 
 const initialState = {
+  name: "",
   email: "",
   password: "",
   confirmPassword: ""
@@ -73,7 +80,6 @@ const initialState = {
 export default function SignUpForm() {
   const [formData, setFormData] = useState(initialState);
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -100,6 +106,7 @@ export default function SignUpForm() {
     validatePassword(formData.password, formData.confirmPassword);
     if (isPasswordCorrect) {
       dispatch(login({
+        name: formData.name,
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
@@ -107,10 +114,13 @@ export default function SignUpForm() {
       }));
       postRegister({
         email: formData.email,
+        name: formData.name,
         password: formData.password,
         confirmPassword: formData.confirmPassword
-      })
-      navigate("/user");
+      }).then(() => {
+
+        navigate("/user");
+      });
     } else {
       alert("Passwords do not match");
     }
@@ -120,6 +130,8 @@ export default function SignUpForm() {
     <>
       <H1>Register</H1>
       <Form onSubmit={handleSubmit}>
+        <Label>First Name</Label>
+        <Input name="name" type="text" placeholder="name" onChange={handleChange} />
         <Label>Email/ Username</Label>
         <Input name="email" type="email" placeholder="Email" onChange={handleChange} />
         <Label>Password</Label>
