@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const user = require("./../media/user.png");
 
 const Card = styled.div`
@@ -42,7 +43,31 @@ const Button = styled.button`
   background-size: 500% 400%;
   border-radius: 50px;
   transition: 0.6s all;
-  margin-bottom: 0.2rem;
+  margin: 1em;
+  &:hover {
+    background-position: 75% 50%;
+    transform: perspective(100px);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition: 0.1s;
+  }
+`;
+
+const Button2 = styled.button`
+  font-family: "Exo 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  color: #fff;
+  height: 25px;
+  width: 85px;
+  border: 0px solid;
+  background-image: linear-gradient(271deg, blue, #00f0a0, blue,#00f0a0);
+  background-size: 500% 400%;
+  border-radius: 50px;
+  transition: 0.6s all;
+  margin: 1em;
   &:hover {
     background-position: 75% 50%;
     transform: perspective(100px);
@@ -55,12 +80,15 @@ const Button = styled.button`
 `;
 
 export default function CardComponent() {
-  const [isLogin, setIsLogin] = useState(true);
+
   return (
-      <Card>
-        <Image src={user} />
-        {isLogin ? <Login /> : <SignUp />}
-        <Button type="submit" onClick={() => setIsLogin(!isLogin)}> {isLogin ? "SignUp" : "Login"} </Button>
-      </Card>
+    <Card>
+      <Image src={user} />
+      <Link to="/login">
+        <Button>Login</Button></Link>
+      <Link to="/signup">
+        <Button2>Register</Button2>
+      </Link>
+    </Card>
   );
 }
