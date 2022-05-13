@@ -182,7 +182,7 @@ export default function SignUpForm() {
       <H1>Register</H1>
       <Form onSubmit={handleSubmit}>
         <Label>First Name</Label>
-        <Input name="name" type="text" placeholder="name" onChange={handleChange} />
+        <Input name="name" type="text" placeholder="Name" onChange={handleChange} />
         <Label>Email/ Username</Label>
         <Input name="email" type="email" placeholder="Email" onChange={handleChange} />
         <Label>Password</Label>
