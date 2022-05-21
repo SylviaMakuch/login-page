@@ -14,7 +14,7 @@ export const RegisterApi = createApi({
     endpoints: (builder) => ({
         postRegister: builder.mutation<{ message: string }, RegisterRequest>({
             query: ({ name, email, password, confirmPassword, }) => ({
-                url: "auth/register/",
+                url: "signup",
                 method: "POST",
                 body: {
                     name,
