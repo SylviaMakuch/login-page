@@ -9,4 +9,4 @@ const userModel = mongoose.Schema({
     //   id: { type: String },
 });
 
-export default mongoose.model("User", userModel);
+export default mongoose.model("user", userModel);
